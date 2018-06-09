@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block section %}
+ <h2>
+ {{ object.nombre }}
+ {% if object.favorite %}
+    &#9733;
+ {% else %}
+    &#9734;
+ {% endif %}
+ {% if object.mandato_id %}
+ (<a href="{% url 'mandatos-detail' object.mandato_id %}">{{ object.mandatos }}</a>)
+ {% endif %}
+ </h2>
+ {% if perms.usuario.usuario %}
+ <a class="btn btn-warning" href="{% url 'mandatos-update' object.id_mandato %}">Editar</a>
+ <a class="btn btn-danger" href="{% url 'mandatos-delete' object.id_mandato %}">Eliminar</a>
+ {% endif %}
+
+ {% endblock section %}
+<hr>
+<div class="panel-body" name="id_mandato" id="id_mandato">
+
+        {% if user.is_authenticated %}
+        <h1>Hola {{ user.username }}</h1>
+        {% else %}
+        {% endif %}
+<h3>Para seguir con el proceso de participación en la consulta anticorrupción,favor complete sus datos</h3>
+        <a href="{% url 'usuarios_complete-create' %}"><h3>Aqui</h3></a>
+</div>
+<div class="container">
+<div style="float:left"> 
+    <div style="width:550px; background:rgb(225, 226, 224); float:center;">
+    <p><strong>Descripcion:</strong></p>
+    {{ object.descripcion  }}</div>
+</div> 
+</div>
+<hr>
+{% endblock content %} 

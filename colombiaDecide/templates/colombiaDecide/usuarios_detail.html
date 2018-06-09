@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block section %}
+ <h2>
+ {{ object.nombre }}
+ {% if object.favorite %}
+    &#9733;
+ {% else %}
+    &#9734;
+ {% endif %}
+ {% if object.usuario_id %}
+ (<a href="{% url 'usuario-detail' object.identificacion %}">{{ object.usuarios }}</a>)
+ {% endif %}
+ </h2>
+ {% if perms.usuario.usuario %}
+ <a class="btn btn-warning" href="{% url 'usuarios-update' object.identificacion %}">Editar</a>
+ <a class="btn btn-danger" href="{% url 'usuarios-delete' object.identificacion %}">Eliminar</a>
+ {% endif %}
+
+ {% endblock section %}
+<hr>
+<hr>
+<div class="container">
+<div style="float:left"> 
+    <div style="width:550px; background:rgb(225, 226, 224); float:center;">
+    <p><strong>Datos personales:</strong></p>
+    {{ object.identificacion }}
+    {{ object.nombre }}
+    {{ object.apellido }}</div>
+</div> 
+</div>
+<hr>
+{% endblock content %} 

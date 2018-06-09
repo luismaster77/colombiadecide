@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block section %}
+ <h2>MANDATOS</h2> 
+ <hr>
+{% endblock section %}
+{% block maincontent %}
+<form action="." method="GET">
+ 	<div class="row well" id="id_usuario" name="id_usuario">
+ 		{% for p in object_list.all %}
+ 		<div class="col-md-4 well">
+ 		<div class="panel panel-primary">
+ 		<div class="panel-heading">
+		 <h3 class="panel-title">{{ p.nombre }} {{ p.apellido }}</h3>
+	 </div>
+ <div class="panel-body" name="id_usuario" id="id_usuario">
+ 	<a href="{% url 'usuario-detail' p.identificacion %}" id="id_usuario" name="id_usuario">
+		<img>{{ p.identificacion }}</img>
+ 	</a>
+	 </div>
+</form>
+ <div class="panel-footer">
+ </div>
+ 	</div>
+ </div>
+ {% endfor %}
+ 	</div>
+{% endblock maincontent %}
