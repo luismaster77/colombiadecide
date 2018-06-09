@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
 # Create your views here.
 @login_required
 def base(request):
@@ -93,8 +94,11 @@ def usuario_list(request):
     return render(request,'colombiaDecide/usuario_list.html', context)
 
 def votosConsulta(request):
+    mandato_list = Mandato.objects.all()
+    context = {'object_list': mandato_list}
     votosSi = 0
     if request.POST.get('click', True):
+
         votosSi = votosSi + 1
         resultado = votosSi
         if resultado > 0:
@@ -103,5 +107,10 @@ def votosConsulta(request):
                 id_usuario='3',
                 total_si=resultado)
             p.save()
+        votar(request)
+        messages.success(request,str(resultado))
+        return render(request,'colombiaDecide/mandato_list.html',context)
 
-        return render(request,'colombiaDecide/usuarios_list.html')
+def votar(request):
+    messages.success(request, "Voto registrado. ¡Gracias por participar!")
+    return render(request,'colombiaDecide/mandato_list.html')
