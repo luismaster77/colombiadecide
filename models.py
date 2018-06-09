@@ -131,11 +131,40 @@ class Mandato(models.Model):
         db_table = 'mandato'
 
 
+class RegistrationRegistrationprofile(models.Model):
+    activation_key = models.CharField(max_length=40)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, unique=True)
+    activated = models.BooleanField()
+
+    class Meta:
+        managed = False
+        db_table = 'registration_registrationprofile'
+
+
+class RegistrationSupervisedregistrationprofile(models.Model):
+    registrationprofile_ptr = models.ForeignKey(RegistrationRegistrationprofile, models.DO_NOTHING, primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'registration_supervisedregistrationprofile'
+
+
 class Usuarios(models.Model):
-    identificacion = models.CharField(primary_key=True, max_length=150)
     nombre = models.CharField(max_length=150, blank=True, null=True)
     apellido = models.CharField(max_length=150, blank=True, null=True)
+    identificacion = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='identificacion', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'usuarios'
+
+
+class VotosConsulta(models.Model):
+    id_votos = models.AutoField(primary_key=True)
+    id_mandato = models.ForeignKey(Mandato, models.DO_NOTHING, db_column='id_mandato', blank=True, null=True)
+    id_usuario = models.IntegerField(blank=True, null=True)
+    totalsi = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'votos_consulta'

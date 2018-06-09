@@ -152,3 +152,13 @@ class Usuarios(models.Model):
     
     def get_absolute_url(self):
         return reverse('usuarios-list')
+    
+class VotosConsulta(models.Model):
+    id_votos = models.AutoField(primary_key=True)
+    id_mandato = models.ForeignKey(Mandato, models.DO_NOTHING, db_column='id_mandato', blank=True, null=True)
+    id_usuario = models.IntegerField(blank=True, null=True)
+    total_si = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'votos_consulta'

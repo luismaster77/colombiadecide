@@ -24,10 +24,11 @@
 
         {% if user.is_authenticated %}
         <h1>Hola {{ user.username }}</h1>
+        <h3>Para seguir con el proceso de participación en la consulta anticorrupción,favor complete sus datos  </h3>
+        <a href="{% url 'usuarios_complete-create' %}"><h3>Aqui</h3></a>
         {% else %}
         {% endif %}
-<h3>Para seguir con el proceso de participación en la consulta anticorrupción,favor complete sus datos</h3>
-        <a href="{% url 'usuarios_complete-create' %}"><h3>Aqui</h3></a>
+        
 </div>
 <div class="container">
 <div style="float:left"> 

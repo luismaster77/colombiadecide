@@ -5,6 +5,7 @@
  <hr>
 {% endblock section %}
 {% block maincontent %}
+{{ votosSi }}
 <form action="." method="GET">
  	<div class="row well" id="id_usuario" name="id_usuario">
  		{% for p in object_list.all %}

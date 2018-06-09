@@ -5,6 +5,7 @@
  <hr>
 {% endblock section %}
 {% block maincontent %}
+<h2>SELECCIONE UNA DE LAS OPCIONES 'SI' O 'NO' ESTA DE ACUERDO CON LOS MANDATOS PARA LA CONSULTA ANTICORRUPCION</h2>
 <form action="." method="GET">
  	<div class="row well" id="id_mandato" name="id_mandato">
  		{% for p in object_list.all %}
@@ -16,8 +17,12 @@
  <div class="panel-body" name="id_mandato" id="id_mandato">
  	<a href="{% url 'mandato-detail' p.id_mandato %}" id="id_mandato" name="id_mandato">
 		<img>{{ p.descripcion }}</img>
- 	</a>
+	 </a>
+	 <hr>
+	 <a class="btn btn-warning" href="{% url 'votos-consulta' %}">SI</a>
+	 <a class="btn btn-danger">NO</a>
 	 </div>
+	
 </form>
  <div class="panel-footer">
  </div>

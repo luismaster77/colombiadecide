@@ -21,4 +21,6 @@ urlpatterns = [
     url(r'^usuarios/create/$', views.UsuariosCreate.as_view(), name='usuarios-create'),
     #Delete mandato
     url(r'^usuarios/(?P<pk>\d+)/delete/$', views.UsuariosDelete.as_view(), name='usuarios-delete'),
+    url(r'^votos$', views.votosConsulta, name='votos-consulta'),
+
 ]
